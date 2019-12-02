@@ -1,17 +1,17 @@
 class WikisController < ApplicationController
   before_action :authorize_request, except: :show
-  before_action :set_wiki, only: [:show, :update, :destroy]
+  before_action :set_wiki, except: %i[create index]
 
   # GET /wikis
   def index
     @wikis = Wiki.all
-
-    render json: @wikis
+    render json: @wikis, status: :ok
   end
 
   # GET /wikis/1
   def show
-    render json: @wiki
+    puts @wiki.to_json
+    render json: @wiki, status: :ok
   end
 
   # POST /wikis
@@ -44,11 +44,13 @@ class WikisController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_wiki
       @wiki = Wiki.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        render json: { errors: 'Wiki not found' }, status: :not_found
     end
 
     # Only allow a trusted parameter "white list" through.
     def wiki_params
       puts 'p: ' + params.to_json
-      params.permit(:avatar,:title, :description)
+      params.permit(:avatar, :title, :description)
     end
 end

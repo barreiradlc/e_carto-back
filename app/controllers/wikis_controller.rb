@@ -50,7 +50,6 @@ class WikisController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def wiki_params
-      puts 'p: ' + params.to_json
-      params.permit(:avatar, :title, :description)
+      params.permit(:avatar, :title, :description,:steps)
     end
 end

@@ -1,0 +1,12 @@
+class AddAvatarToUsers < ActiveRecord::Migration[6.0]
+  def change
+    add_  column :users, :avatar, :string
+  end
+end
+
+
+# class AddAvatarToUser < ActiveRecord::Migration[5.2]
+#   def change
+#     add_column :users, :avatar, :string
+#   end
+# end

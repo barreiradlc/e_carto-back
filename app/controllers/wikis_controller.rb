@@ -16,7 +16,6 @@ class WikisController < ApplicationController
 
   # POST /wikis
   def create
-    puts wiki_params.to_json
     @wiki = Wiki.new(wiki_params)
 
     if @wiki.save
@@ -28,6 +27,7 @@ class WikisController < ApplicationController
 
   # PATCH/PUT /wikis/1
   def update
+    puts 'parâmetros: ' + wiki_params.to_json
     if @wiki.update(wiki_params)
       render json: @wiki
     else
@@ -48,7 +48,7 @@ class WikisController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def wiki_params
-      puts 'parametros' + params.to_json
-      params.permit(:title, :description)
+      puts 'p: ' + params.to_json
+      params.permit(:avatar,:title, :description)
     end
 end

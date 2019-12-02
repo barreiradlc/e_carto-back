@@ -1,7 +1,10 @@
-class UsersController < ApplicationController
-before_action :authorize_request, except: :create
-  before_action :find_user, except: %i[create index]
 
+class UsersController < ApplicationController
+  before_action :authorize_request, except: :create
+  before_action :find_user, except: %i[create index]
+  
+
+  
   # GET /users
   def index
     @users = User.all
@@ -47,8 +50,6 @@ before_action :authorize_request, except: :create
 
   def user_params 
 
-    params.permit(
-      :avatar, :name, :username, :email, :password, :password_confirmation
-    )
+    params.permit(:avatar, :name, :username, :email, :password, :password_confirmation)
   end
 end

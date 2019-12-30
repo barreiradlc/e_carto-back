@@ -12,9 +12,8 @@ amazon:
   access_key_id:  AKIA5IRSYUMENUFLSQPU
   secret_access_key: 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 
   region: sa-east-1
-  bucket: ecarto
+  bucket: e-carto
   public: true
-  endpoint : http://ecarto.s3-website-sa-east-1.amazonaws.com 
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:

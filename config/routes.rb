@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :materials
   # resources :materiais
   resources :steps
   resources :items

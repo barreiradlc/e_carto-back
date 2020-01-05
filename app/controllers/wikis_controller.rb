@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   before_action :authorize_request, except: :show
-  before_action :set_wiki, except: %i[create index]
+  before_action :set_wiki, except: %i[create index ]
 
   # GET /wikis
   def index
@@ -16,6 +16,7 @@ class WikisController < ApplicationController
 
   # POST /wikis
   def create
+    puts 'parâmetros: ' + wiki_params.to_json
     @wiki = Wiki.new(wiki_params)
 
     if @wiki.save
@@ -50,6 +51,6 @@ class WikisController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def wiki_params
-      params.permit(:avatar, :title, :description,:steps)
+      params.permit(:avatar, :title, :description,:steps, :materiais)
     end
 end

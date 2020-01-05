@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authorize_request, except: :show
-  before_action :set_item, except: %i[create index]
+  before_action :set_item, except: %i[create index materiais artes]
 
   # GET /items
   def index
@@ -37,6 +37,22 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   def destroy
     @item.destroy
+  end
+
+
+  def materiais
+    @items = Item.where('nature' => 'MATERIAL')
+
+    render json: @items
+  end
+
+
+  def artes
+    puts  'req'
+    @items = Item.where('nature' => 'ARTE')
+    
+    render json: @items
+    puts  'res'
   end
 
   private
